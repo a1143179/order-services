@@ -7,7 +7,7 @@ require_once('models/OrderModel.php');
 use Model\OrderModel;
 use Model\DB;
 
-
+// this can be further refactored to a seperate controller class
 function orders_index()
 {
     $orderModel = new OrderModel();
