@@ -41,8 +41,9 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/orders', 'orders_index');
     // {id} must be a number (\d+)
     $r->addRoute('GET', '/orders/{id:\d+}', 'orders_show');
-    // The /{title} suffix is optional
+    
     $r->addRoute('POST', '/orders', 'orders_store');
+
 });
 
 // Fetch method and URI from somewhere

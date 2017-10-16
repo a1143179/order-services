@@ -24,16 +24,13 @@ class OrderModel
         }
         $orderRows = $orderStmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $selectUserSql = 'SELECT * FROM users WHERE email = ?';
-        $selectUserStmt = $db->prepare($selectUserSql);
-        $selectUserStmt->execute([$postArray['user']['email']]);
-
 
         foreach ($orderRows as $orderKey => $orderRow) {
 
             $stmt = $db->prepare('SELECT product_name, quantity, product_id FROM order_product JOIN products ON order_product.product_id = products.id WHERE order_id = ?');
             $stmt->execute([$orderRow['id']]);
-            $orderRows[$orderKey]['products'][] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $productArray = [];
+            $orderRows[$orderKey]['products'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         return $orderRows;
     }
